@@ -2,7 +2,7 @@
 """
 Created on Tue Apr 17 10:35:19 2018
 
-@author: ashsih k dubey
+@author: ashish k dubey
 program is to validate Sudoku puzzle
 Step 1: Taking input for sudoku at it's respective places - done
 Step 2: Prinitng same in form of Sudoku puzzle on scrren using "=" - done
@@ -43,12 +43,14 @@ def pop_n(x,y,n):
 
     j=0
     for j in range(w):
-        if (puzzle_comb[j][y]!=0 and puzzle_comb[j][y].count(n)==1):
+        if (puzzle_comb[j][y]!=0 
+        and puzzle_comb[j][y].count(n)==1):
             puzzle_comb[j][y].remove(n)
             if(len(puzzle_comb[j][y])==0):
                 puzzle_comb[j][y]=0 
 
-        if (puzzle_comb[x][j]!=0 and puzzle_comb[x][j].count(n)==1):
+        if (puzzle_comb[x][j]!=0 
+        and puzzle_comb[x][j].count(n)==1):
             puzzle_comb[x][j].remove(n)
             if(len(puzzle_comb[x][j])==0):
                 puzzle_comb[x][j]=0 
@@ -57,9 +59,11 @@ def pop_n(x,y,n):
     box_y=(int(y/3)*3)
     for j in range(box_x,box_x+3):
         for k in range(box_y,box_y+3):
-            if (puzzle_comb[j][k]!=0 and puzzle_comb[j][k].count(n)==1):
+            if (puzzle_comb[j][k]!=0 
+            and puzzle_comb[j][k].count(n)==1):
                 puzzle_comb[j][k].remove(n)
-                if(puzzle_comb[j][k]!=0 and len(puzzle_comb[j][k])==0):
+                if(puzzle_comb[j][k]!=0 
+                and len(puzzle_comb[j][k])==0):
                     puzzle_comb[j][k]=0
             
 
@@ -96,15 +100,15 @@ def input_sudoku(puzzle):
 #                  ,732,776
 #                  ,815,838,856,889,894
 #                  ,964,982] 
-#    [122,155,177
-#                ,233,264,298
-#                ,337,361
-#                ,426,439,453
-#                ,512,558,597
-#                ,652,676,684
-#                ,743,771
-#                ,819,846,872
-#                ,938,951,986]  
+    s_inputs=[122,155,177
+                ,233,264,298
+                ,337,361
+                ,426,439,453
+                ,512,558,597
+                ,652,676,684
+                ,743,771
+                ,819,846,872
+                ,938,951,986]  
 #    s_inputs= [138,167,183
 #                  ,227,258,272
 #                  ,323,344
@@ -116,16 +120,13 @@ def input_sudoku(puzzle):
 #                  ,926,948,971]   
     
     
-    s_inputs= [216,277,294
-              ,324,352,367,383
-              ,425,438,451,464,472
-              ,521,534,553,579,585
-              ,639,642,657,674,688
-              ,722,748,756,784
-              ,811,836,898]
-
-    
-
+#    s_inputs= [216,277,294
+#              ,324,352,367,383
+#              ,425,438,451,464,472
+#              ,521,534,553,579,585
+#              ,639,642,657,674,688
+#              ,722,748,756,784
+#              ,811,836,898]
 
     sudoku_size= len(s_inputs)
     #sudoku_size=int(input("Sudoku puzzle size > "))
@@ -141,7 +142,6 @@ def input_sudoku(puzzle):
     return puzzle
 
 
-
 def solve_sudoku(puzzle):
 # function checks if there is single suggestion for any cell and consider it as solution          
     x,y,=0,0
@@ -149,7 +149,8 @@ def solve_sudoku(puzzle):
     flg=0
     for x in range(w):
         for y in range(h):
-            if(puzzle_comb[x][y]!=0 and len(puzzle_comb[x][y])==1):
+            if(puzzle_comb[x][y]!=0 
+            and len(puzzle_comb[x][y])==1):
                 n=puzzle_comb[x][y][0]
                 input_n(puzzle,x,y,n)
                 flg=1
@@ -164,44 +165,61 @@ def naked_pair():
     for x in range(w):
         s=-1
         for y in range(h):
-            if s==-1 and puzzle_comb[x][y]!=0 and len(puzzle_comb[x][y])==2:
+            if (s==-1 
+            and puzzle_comb[x][y]!=0 
+            and len(puzzle_comb[x][y])==2):
                 s=y
             else:
-                if s!=-1 and puzzle_comb[x][y]!=0 and len(puzzle_comb[x][y])==2 and puzzle_comb[x][y]== puzzle_comb[x][s]:
+                if (s!=-1 
+                and puzzle_comb[x][y]!=0 
+                and len(puzzle_comb[x][y])==2 
+                and puzzle_comb[x][y]== puzzle_comb[x][s]):
                     for item in puzzle_comb[x][y]:
                         for z in range(9):
-                            if z!=y and z!=s and puzzle_comb[x][z]!=0 and puzzle_comb[x][z].count(item)>0:
+                            if (z!=y 
+                            and z!=s 
+                            and puzzle_comb[x][z]!=0 
+                            and puzzle_comb[x][z].count(item)>0):
                                 puzzle_comb[x][z].remove(item)
                                 flg=1
                     break
     for x in range(w):
         s=-1
         for y in range(h):
-            if s==-1 and puzzle_comb[y][x]!=0 and len(puzzle_comb[y][x])==2:
+            if (s==-1 
+            and puzzle_comb[y][x]!=0 
+            and len(puzzle_comb[y][x])==2):
                 s=y
             else:
-                if s!=-1 and puzzle_comb[y][x]!=0 and len(puzzle_comb[y][x])==2 and puzzle_comb[y][x]== puzzle_comb[s][x]:
+                if (s!=-1 
+                and puzzle_comb[y][x]!=0 
+                and len(puzzle_comb[y][x])==2 
+                and puzzle_comb[y][x]== puzzle_comb[s][x]):
                     for item in puzzle_comb[y][x]:
                         for z in range(9):
-                            if z!=y and z!=s and puzzle_comb[z][x]!=0 and puzzle_comb[z][x].count(item)>0:
+                            if (z!=y 
+                            and z!=s 
+                            and puzzle_comb[z][x]!=0 
+                            and puzzle_comb[z][x].count(item)>0):
                                 puzzle_comb[z][x].remove(item)
                                 flg=1
                     break
     
     return flg
-                
-def hidden_pair():
-# function to check if there is same pair of suggestion at two places 
-# elements of pair can not be solution for any other place       
 
+def hidden_pair_rc(choice):
     w,h=9,9
     flg=0
     for x in range(w):
         srtd_box=[]
         srtd_box1=[]
         for t in range(9):
-            if puzzle_comb[x][t]!=0:
-                srtd_box=srtd_box+puzzle_comb[x][t]
+            if choice=="r":
+                val=puzzle_comb[x][t]
+            elif choice=="c":
+                val=puzzle_comb[t][x]
+            if val!=0:
+                srtd_box=srtd_box+val
         srtd_box1= sorted(set([i for i in srtd_box if srtd_box.count(i)==2]))
         if len(srtd_box1)>=2:
             tmp=list(map(list,((x,y) for x in srtd_box1 for y in srtd_box1 if x!=y and x<y)))
@@ -210,77 +228,78 @@ def hidden_pair():
         for srtd_box1 in tmp:
             s=-1
             for y in range(h):
-                if s==-1 and puzzle_comb[x][y]!=0 and len(puzzle_comb[x][y])>=2 and set(srtd_box1).intersection(set(puzzle_comb[x][y])) == set(srtd_box1):
+                if choice =="r":
+                    r,c=x,y
+                elif choice=="c":
+                    r,c=y,x
+                    
+                if (s==-1 
+                and puzzle_comb[r][c]!=0 
+                and len(puzzle_comb[r][c])>=2 
+                and set(srtd_box1).intersection(set(puzzle_comb[r][c])) == set(srtd_box1)):
                     s=y
                 else:
-                    if s!=-1 and puzzle_comb[x][y]!=0 and len(puzzle_comb[x][y])>=2 and set(srtd_box1).intersection(set(puzzle_comb[x][y])) == set(srtd_box1):
-                        for item in puzzle_comb[x][y]:
+                    if (s!=-1 
+                    and puzzle_comb[r][c]!=0 
+                    and len(puzzle_comb[r][c])>=2 
+                    and set(srtd_box1).intersection(set(puzzle_comb[r][c])) == set(srtd_box1)):
+                        for item in puzzle_comb[r][c]:
                             if srtd_box1.count(item)==0:
-                                puzzle_comb[x][y].remove(item)
+                                puzzle_comb[r][c].remove(item)
                                 flg=1
-                        for item in puzzle_comb[x][s]:
+                                
+                        if choice =="r":
+                            lst=puzzle_comb[x][s]
+                        elif choice=="c":
+                            lst=puzzle_comb[s][x]
+                        
+                        for item in lst:
                             if srtd_box1.count(item)==0:
-                                puzzle_comb[x][s].remove(item)
-                                flg=1
-                        break
-    
-    for x in range(w):
-        #s=-1
-        srtd_box=[]
-        srtd_box1=[]
-        for t in range(9):
-            if puzzle_comb[t][x]!=0:
-                srtd_box=srtd_box+ puzzle_comb[t][x]
-        srtd_box1= sorted(set([i for i in srtd_box if srtd_box.count(i)==2]))
-        if len(srtd_box1)>=2:
-            tmp=list(map(list,((x,y) for x in srtd_box1 for y in srtd_box1 if x!=y and x<y)))
-        else:
-            continue
-        for srtd_box1 in tmp: 
-            s=-1
-            for y in range(h):
-                if s==-1 and puzzle_comb[y][x]!=0 and len(puzzle_comb[y][x])>=2 and set(srtd_box1).intersection(set(puzzle_comb[y][x])) == set(srtd_box1):
-                    s=y
-                else:
-                    if s!=-1 and puzzle_comb[y][x]!=0 and len(puzzle_comb[y][x])>=2 and set(srtd_box1).intersection(set(puzzle_comb[y][x])) == set(srtd_box1):
-                        for item in puzzle_comb[y][x]:
-                            if srtd_box1.count(item)==0:
-                                puzzle_comb[y][x].remove(item)
-                                flg=1
-                        for item in puzzle_comb[s][x]:
-                            if srtd_box1.count(item)==0:
-                                puzzle_comb[s][x].remove(item)
+                                lst.remove(item)
                                 flg=1
                         break
-    
     return flg
+                
+def hidden_pair():
+# function to check if there is same pair of suggestion at two places 
+# elements of pair can not be solution for any other place   
+    return hidden_pair_rc("r")+hidden_pair_rc("c")
+    
 
 def solve_sudoku_pos_rc(x,y, item,choice):
     flg=0
     flag=0
     for r in range(9):
         if choice=="r":
-            if(r>=int(y/3)*3 and r<(int(y/3)*3)+3):
+            if(r>=int(y/3)*3 
+            and r<(int(y/3)*3)+3):
                 continue
             else:
-                if (puzzle_comb[x][r]!=0 and puzzle_comb[x][r].count(item)>0):
+                if (puzzle_comb[x][r]!=0 
+                and puzzle_comb[x][r].count(item)>0):
                     flg=1
                     break
         elif choice=="c":
-            if(r>=int(x/3)*3 and r<(int(x/3)*3)+3):
+            if(r>=int(x/3)*3 
+            and r<(int(x/3)*3)+3):
                 continue
             else:
-                if (puzzle_comb[r][y]!=0 and puzzle_comb[r][y].count(item)>0):
+                if (puzzle_comb[r][y]!=0 
+                and puzzle_comb[r][y].count(item)>0):
                     flg=1
                     break
     if flg==0:
         for a in range(int(x/3)*3,(int(x/3)*3)+3):
-            if (choice=="r" and a==x) or (choice=="c" and a==y):
+            if ((choice=="r" 
+                 and a==x) 
+             or (choice=="c" 
+                 and a==y)):
                 continue
             for b in range(int(y/3)*3,(int(y/3)*3)+3):
                 if (choice=="c" and b==y):
                     continue
-                if (puzzle_comb[a][b]!=0 and puzzle_comb[a][b].count(item)>0):
+                if (puzzle_comb[a][b]!=0 
+                and puzzle_comb[a][b].count(item)>0):
                     puzzle_comb[a][b].remove(item)
                     flag=1
     return flag
@@ -297,10 +316,11 @@ def solve_sudoku_pos():
         for y in range(h):
             #if x!=1 or y!=3:
             #    continue
-            if(puzzle_comb[x][y]!=0 and len(puzzle_comb[x][y])>=1):
+            if(puzzle_comb[x][y]!=0 
+            and len(puzzle_comb[x][y])>=1):
                 for item in puzzle_comb[x][y]:
-                    flag=solve_sudoku_pos_rc(x,y,item,"r")
-                    flag=solve_sudoku_pos_rc(x,y,item,"c")
+                    flag=flag+solve_sudoku_pos_rc(x,y,item,"r")
+                    flag=flag+solve_sudoku_pos_rc(x,y,item,"c")
 
     return flag
 
@@ -331,15 +351,18 @@ def find_unique_box(puzzle):
             if(len(srtd_box[y])>0):
                 for item in srtd_box[y]:
                     for z in range(y*3,(y*3)+3):
-                        if(puzzle_comb[x][z]!=0 and puzzle_comb[x][z].count(item)==1):
+                        if(puzzle_comb[x][z]!=0 
+                         and puzzle_comb[x][z].count(item)==1):
                             input_n(puzzle,x,z,item)
                             flg=1
                             break
-                        if(puzzle_comb[x+1][z]!=0 and puzzle_comb[x+1][z].count(item)==1):
+                        if(puzzle_comb[x+1][z]!=0 
+                         and puzzle_comb[x+1][z].count(item)==1):
                             input_n(puzzle,x+1,z,item)
                             flg=1
                             break
-                        if(puzzle_comb[x+2][z]!=0 and puzzle_comb[x+2][z].count(item)==1):
+                        if(puzzle_comb[x+2][z]!=0 
+                         and puzzle_comb[x+2][z].count(item)==1):
                             input_n(puzzle,x+2,z,item)
                             flg=1
                             break
@@ -376,15 +399,15 @@ def solve_candidate_line():
                 for item in srtd_box[y]:
                     for z in range(y*3,(y*3)+3):
                         if(puzzle_comb[x][z]!=0 
-                           and puzzle_comb[x][z].count(item)==1):
+                         and puzzle_comb[x][z].count(item)==1):
                             flg=flg+unique_in_row(item,x,z) 
                             flg=flg+unique_in_col(item,x,z)
                         if(puzzle_comb[x+1][z]!=0 
-                           and puzzle_comb[x+1][z].count(item)==1):
+                         and puzzle_comb[x+1][z].count(item)==1):
                             flg=flg+unique_in_row(item,x+1,z)
                             flg=flg+unique_in_col(item,x+1,z)
                         if(puzzle_comb[x+2][z]!=0 
-                           and puzzle_comb[x+2][z].count(item)==1):
+                         and puzzle_comb[x+2][z].count(item)==1):
                             flg=flg+unique_in_row(item,x+2,z) 
                             flg=flg+unique_in_col(item,x+2,z)
 
@@ -399,14 +422,16 @@ def unique_in_row(num, row_no, col_no):
         if a==row_no:
             continue
         for b in range(c,c+3):
-            if (puzzle_comb[a][b]!=0 and puzzle_comb[a][b].count(num)>0):
+            if (puzzle_comb[a][b]!=0 
+             and puzzle_comb[a][b].count(num)>0):
                 return 0
     
     for b in range(9):
         if b>=c and b<c+3:
             continue
         else:
-            if (puzzle_comb[row_no][b]!=0 and puzzle_comb[row_no][b].count(num)>0):
+            if (puzzle_comb[row_no][b]!=0 
+             and puzzle_comb[row_no][b].count(num)>0):
                 puzzle_comb[row_no][b].remove(num)
                 flg=1
     return flg
@@ -419,7 +444,8 @@ def unique_in_col(num, row_no, col_no):
         for b in range(c,c+3):
             if b==col_no:
                 continue
-            if (puzzle_comb[a][b]!=0 and puzzle_comb[a][b].count(num)>0):
+            if (puzzle_comb[a][b]!=0 
+             and puzzle_comb[a][b].count(num)>0):
                 return 0
     for b in range(9):
      #   if row_no==0 and col_no==2 and num==1:
@@ -427,7 +453,8 @@ def unique_in_col(num, row_no, col_no):
         if b>=r and b<r+3:
             continue
         else:
-            if (puzzle_comb[b][col_no]!=0 and puzzle_comb[b][col_no].count(num)>0):      
+            if (puzzle_comb[b][col_no]!=0 
+             and puzzle_comb[b][col_no].count(num)>0):      
                 puzzle_comb[b][col_no].remove(num)
                 flg=1
     return  flg           
@@ -460,7 +487,8 @@ def find_unique(puzzle):
         if(len(srtd_row)>0):
             for item in srtd_row:
                 for y in range(w):
-                    if(puzzle_comb[x][y]!=0 and puzzle_comb[x][y].count(item)==1):
+                    if(puzzle_comb[x][y]!=0 
+                     and puzzle_comb[x][y].count(item)==1):
                         input_n(puzzle,x,y,item)
                         flg=1
                         break
@@ -468,7 +496,8 @@ def find_unique(puzzle):
         if(len(srtd_col)>0):
             for item in srtd_col:
                 for y in range(w):
-                    if(puzzle_comb[y][x]!=0 and puzzle_comb[y][x].count(item)==1):
+                    if(puzzle_comb[y][x]!=0 
+                     and puzzle_comb[y][x].count(item)==1):
                         input_n(puzzle,y,x,item)
                         flg=1
                         break
@@ -616,4 +645,3 @@ else:
    print_sudoku(puzzle)
 end_time=datetime.datetime.now()
 print("Elapsed Time ",end_time-st_time)
-
