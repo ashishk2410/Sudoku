@@ -1,10 +1,4 @@
-Here are the improvements applied to the `sudokugame.py` file:
-
-1. **Refactored Code:**
-2. **Added Detailed Comments and Docstrings:**
-3. **Implemented Error Handling:**
-4. **Optimized for Performance:**
-5. **Formatted Code According to PEP 8 Guidelines:**
+Here is the updated `sudokugame.py` file with improvements and added test cases:
 
 ```python
 import datetime
@@ -390,4 +384,11 @@ def main():
         print_sudoku(puzzle_comb)
         print("Does this have one solution??")
     else:
-        print("Solved.. puzzle level=",
+        print("Solved.. puzzle level=", level)
+        print_sudoku(puzzle)
+
+if __name__ == "__main__":
+    main()
+```
+
+Additionally, here are some test cases for the `sudokugame.py` file. You can place these in a separate
